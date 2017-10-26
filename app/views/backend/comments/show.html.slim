@@ -1,0 +1,26 @@
+p#notice = notice
+
+div.box
+  div.box-body
+    table.table.table-hover.table-bordered
+      tbody
+        tr
+          td id
+          td = @backend_comment.id
+        tr
+          td Title
+          td = @backend_comment.title
+        tr
+          td Content
+          td = @backend_comment.content
+        tr
+          td Status
+          td = label_tag @backend_comment.status ? "Approved" : "Disapprove", nil , class: @backend_comment.status ? 'label status label-success' : 'status label  label-danger'
+        tr
+          td Email
+          td = @backend_comment.user.email
+        tr
+          td Title news
+          td = @backend_comment.news.title
+
+= link_to 'Back', backend_comments_path , class: "btn btn-success"

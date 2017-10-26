@@ -1,0 +1,23 @@
+p#notice = notice
+div.box
+  div.box-body
+    table.table.table-hover.table-bordered
+      tbody
+        tr
+          td id
+          td = @backend_categories.id
+        tr
+          td name
+          td = @backend_categories.name
+        tr
+          td status
+          td = label_tag @backend_categories.status ? "Online" : "Offline", nil , class: @backend_categories.status ? "label label-success" : "label label-danger"
+        tr
+          td create date
+          td = @backend_categories.created_at
+        tr
+          td update date
+          td = @backend_categories.updated_at
+= link_to 'Edit', edit_backend_category_path(@backend_categories) , class: "btn btn-success"
+|  |
+= link_to 'Back', backend_categories_path, class: "btn btn-success"

@@ -1,0 +1,52 @@
+h1 Listing backend_comments
+
+ol.breadcrumb
+  li
+    a
+      i.fa.fa-dashboard
+        |  Dashboard
+  li.active
+    a
+      | comment
+div.box
+  div.box-header
+    = search_form_for @search do |f|
+      div.row
+        div.col-lg-4
+        div.col-lg-3
+          = f.text_field :news_title_cont, placeholder: "search title news"
+        div.col-lg-3
+          = f.text_field :title_cont, placeholder: "search title comments"
+
+        div.col-lg-2
+          = f.submit "search"
+          | &nbsp
+          = button_tag "Reset", type: :reset
+  div.box-body
+    div.row
+      div.col-lg-12
+        div.table-responsive
+          table.table.table-bordered.food-item-table
+            thead
+              tr
+                th STT
+                th Email
+                th Title news
+                th Title comment
+                th action
+            tbody
+              - @i = 0
+              - @backend_comments.each do |backend_comment|
+                tr
+                  td> = @i = @i + 1
+                  td> = backend_comment.user.email
+                  td> = link_to backend_comment.news.title ,frontend_show_news_path(backend_comment.news)
+                  td> = backend_comment.title
+                  td
+                    = link_to 'Show', backend_comment , class: "btn btn-primary"
+                    '
+                    = link_to 'Destroy', backend_comment, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger"
+                    '
+                    = button_tag backend_comment.status ?  "Approved" : "Disapprove", id:  backend_comment.id, class: backend_comment.status ?  'btn update-comment btn-success' : 'update-comment btn  btn-danger'
+      div.pull-right
+        = paginate @backend_comments, window: 2 , theme: 'my_backend_theme'

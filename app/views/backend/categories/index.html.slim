@@ -1,0 +1,49 @@
+h1 Backend Categories
+
+ol.breadcrumb
+  li
+    a
+      i.fa.fa-dashboard
+        |  Dashboard
+  li.active
+    a
+      | Categories
+
+div.box
+  div.box-header
+    = search_form_for @search do |f|
+      div.row
+        div.col-lg-6
+        div.col-lg-3
+          = f.text_field :name_cont, placeholder: "search name"
+        div.col-lg-3
+          = f.submit "search"
+          | &nbsp
+          = button_tag "Reset", type: :reset
+  div.box-body
+    div.row
+      div.col-lg-12
+        div.table-responsive
+          table.table.table-bordered.food-item-table
+            thead
+              tr
+                th STT
+                th Name
+                th action
+            tbody
+              - @i = 0
+              - @backend_categories.each do |backend_categories|
+                tr
+                  td> = @i = @i + 1
+                  td> = link_to backend_categories.name , frontend_show_category_path(backend_categories)
+                  td>
+                    = link_to 'Show', backend_categories , class: "btn btn-primary"
+                    '
+                    = link_to 'Edit', edit_backend_category_path(backend_categories), class: "btn btn-success"
+                    '
+                    = link_to 'Destroy', backend_categories, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger"
+                    '
+                    = button_tag backend_categories.status ? "Online" : "Offline", id:  backend_categories.id, class: backend_categories.status ? 'btn update-category btn-success' :  'update-category btn  btn-danger'
+      div.pull-right
+        = paginate @backend_categories, window: 2 , theme: 'my_backend_theme'
+= link_to 'New Backend Cateogries', new_backend_category_path , class: "btn btn-success"

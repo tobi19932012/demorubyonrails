@@ -1,0 +1,123 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *= require frontend/bootstrap.min
+ *= require frontend/slick
+ *= require frontend/slick-theme
+ *= require frontend/font-awesome.min
+ *= require frontend/font
+ *= require frontend/style
+ *= require frontend/responsive
+ *= require_tree .
+ *= require_self
+ */
+
+.copyright_text > p, .copyright_text > a {
+    display: inline;
+}
+
+.pagination .active {
+    background-color: whitesmoke;
+}
+
+.watched a.jp-current, a.jp-current:hover {
+    background-color: whitesmoke;
+}
+
+.news a.jp-current, a.jp-current:hover {
+    background-color: whitesmoke;
+}
+
+.number a.jp-current, a.jp-current:hover {
+    background-color: whitesmoke;
+}
+
+.wrapper {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.checkbox{
+  margin-left: 20px;
+}
+
+.panel-primary > .panel-footer{
+  background-image: linear-gradient(to bottom,#337ab7 0,#2e6da4 100%);
+}
+.single_content_wrapper > .center > .slick-next{
+  right: 1px;
+}
+.single_content_wrapper > .center > .slick-prev {
+  left: 1px;
+}
+.single_content_wrapper > .center > .slick-next, .single_content_wrapper > .center > .slick-prev{
+
+  top: auto;
+  bottom: 0;
+
+}
+
+.single_content_wrapper > .responsive > .slick-next{
+  right: 1px;
+}
+.single_content_wrapper > .responsive > .slick-prev {
+  left: 1px;
+}
+
+.single_content_wrapper > .responsive > .slick-dots{
+  display: none !important;
+  width: 10%;
+  left: 0;
+  right: 0;
+  margin: 0 auto ;
+  bottom: 2%;
+}
+.single_content_wrapper > .responsive > .slick-next, .single_content_wrapper > .responsive > .slick-prev{
+
+  top: auto;
+  bottom: 0;
+
+}
+
+.single_content_wrapper > .slick-slider{
+  position: static;
+}
+
+.main_content > .panel{
+  position: relative;
+}
+
+
+.images-size{
+  overflow: hidden;
+  height: 150px;
+}
+
+
+
+.images-home-watched{
+  overflow: hidden;
+  height: 90px;
+}
+
+.images-home-number{
+  overflow: hidden;
+  height: 113px;
+}

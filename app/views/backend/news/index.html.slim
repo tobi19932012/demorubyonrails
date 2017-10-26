@@ -1,0 +1,55 @@
+h1 Backend News
+
+ol class="breadcrumb"
+  li
+    a
+      i class="fa fa-dashboard"
+        |  Dashboard
+  li class="active"
+    a
+      | News
+
+div class="box"
+  div class="box-header"
+    = search_form_for @search do |f|
+      div class="row"
+        div class="col-lg-6"
+        div class="col-lg-3"
+          = f.text_field :title_cont, placeholder: "search title"
+        div class="col-lg-3"
+          = f.submit "search"
+          | &nbsp
+          = button_tag "Reset", type: :reset
+  div class="box-body"
+    div class="row"
+      div class="col-lg-12"
+        div class="table-responsive"
+          table class="table table-bordered food-item-table"
+            thead
+              tr
+                th STT
+                th Title
+                th Category id
+                th Images
+                th number_view
+                th action
+            tbody
+              - @i = 0
+              - @backend_news.each do |backend_news|
+                tr
+                  td> = @i = @i + 1
+                  td> = link_to backend_news.title , frontend_show_news_path(backend_news)
+                  td> = backend_news.category_id
+                  td> = image_tag backend_news.images.url(:thumb)
+                  td> = backend_news.number_view
+                  td
+                    = link_to 'Show', backend_news , class: "btn btn-primary"
+                    '
+                    = link_to 'Edit', edit_backend_news_path(backend_news), class: "btn btn-success"
+                    '
+                    = link_to 'Destroy', [backend_news], method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger"
+                    '
+                    = button_tag backend_news.status ? "Online" : "Offline", id:  backend_news.id, class: backend_news.status ? 'btn update-news btn-success' : 'update-news btn  btn-danger'
+      div class="pull-right"
+        = paginate @backend_news, window: 2 , theme: 'my_backend_theme'
+= link_to 'New Backend News', new_backend_news_path , class: "btn btn-success"

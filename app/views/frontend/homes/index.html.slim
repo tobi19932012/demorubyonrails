@@ -1,0 +1,90 @@
+/hiển thị danh sách mới nhất
+/- byebug
+.fix.main_content.floatleft
+  .panel.panel-primary
+    .panel-heading
+      h3.panel-title New post
+    - if @frontend_news_index
+      .panel-body
+        .fix.single_content_wrapper
+          .responsive
+            - @frontend_news_index.each do |frontend_news|
+              /- cache frontend_news do
+              .fix.single_content.floatleft
+                .images-home-number
+                  = image_tag frontend_news.images.url(:medium)
+                .fix.single_content_info
+                  h1
+                    = link_to frontend_news.title , frontend_show_news_path(frontend_news)
+                  p.author By Admin in News
+                  p
+                    = frontend_news.news_details.truncate(27, separator: ' ')
+                  .fix.post-meta
+                    p
+                      = frontend_news.created_at.strftime("%d-%m-%Y")
+                      '
+                      | | #{frontend_news.comments.where(status: true).count } Comments
+        .pull-right
+          = link_to 'Xem tất cả' , frontend_index_post_news_path
+      .panel-footer
+        | &nbsp
+
+  /hiển thị danh nhiều lượt view nhất
+  .panel.panel-primary
+    .panel-heading
+      h3.panel-title Most viewed news
+    - if @frontend_news_number_view
+      .panel-body
+        .fix.single_content_wrapper
+          .responsive
+            - @frontend_news_number_view.each do |frontend_news_number_view|
+              - if frontend_news_number_view.number_view > 0
+                .fix.single_content.floatleft
+                  .images-home-number
+                    = image_tag frontend_news_number_view.images.url(:medium)
+                  .fix.single_content_info
+                    h1
+                      = link_to frontend_news_number_view.title , frontend_show_news_path(frontend_news_number_view)
+                    p.author By Admin in News
+                    p
+                      = raw frontend_news_number_view.news_details.truncate(27, separator: ' ')
+                    .fix.post-meta
+                      p
+                        = frontend_news_number_view.created_at.strftime("%d-%m-%Y")
+                        '
+                        | | #{frontend_news_number_view.comments.where(status: true).count } Comments
+        .pull-right
+          = link_to 'Xem tất cả', frontend_most_views_news_path
+      .panel-footer
+        | &nbsp
+        /.number.pagination
+        /- if params[:number_view_page]
+
+
+  /hiển thị danh đã xem
+  .panel.panel-primary
+    .panel-heading
+      h3.panel-title watched News
+    - if @frontend_news_cookie
+      .panel-body
+        .fix.single_content_wrapper.lady
+          .center
+            - @frontend_news_cookie.each do |frontend_news_cookie|
+              .fix.single_content.floatleft
+                .images-home-watched
+                  = image_tag frontend_news_cookie.images.url(:medium)
+                .fix.single_content_info
+                  h1
+                    = link_to frontend_news_cookie.title , frontend_show_news_path(frontend_news_cookie)
+                  p.author By Admin in News
+                  p
+                    = raw frontend_news_cookie.news_details.truncate(27, separator: ' ')
+                  .fix.post-meta
+                    p
+                      = frontend_news_cookie.created_at.strftime("%d-%m-%Y")
+                      '
+                      | | #{frontend_news_cookie.comments.where(status: true).count } Comments
+      .panel-footer
+        | &nbsp
+        /= paginate @frontend_news_cookie,  theme: 'my_frontend_theme'
+  /- byebug

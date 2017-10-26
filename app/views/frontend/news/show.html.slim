@@ -1,0 +1,84 @@
+- content_for :head do
+  // Open Graph tags
+  /= meta_tag :description, @frontend_news_details.news_details
+  meta property="og:title" content= @frontend_news_details.title
+  meta property="og:type" content="News"
+  meta property="og:url" content= frontend_show_news_path(@frontend_news_details)
+  meta property="og:description" content=  @frontend_news_details.news_details
+  meta property="og:image" content= @frontend_news_details.images.url
+  meta property="fb:app_id" content= "140354636712025"
+  // Twitter card property
+  /= meta name="twitter:card" content="<%= @article.title %>">
+  /= meta name="twitter:site" content="@mytwitter">
+.fix.main_content.floatleft
+
+  - if @frontend_news_details
+    .single_page_content.fix.form-group
+      h1 #{@frontend_news_details.title}
+      .single_post_meta.fix
+        p #{@frontend_news_details.created_at.strftime("%d-%m-%Y")}  |   #{@frontend_news_details.comments.where(status: true).count } Comments
+      = image_tag @frontend_news_details.images.url , class: "single_feature_img"
+      /img src="images/single_feature_img.png" class="single_feature_img" alt=""
+      p
+        = @frontend_news_details.news_details
+      - if @relation_cat_news
+        .related_post.fix
+          h2 Related Post
+          .fix.related_post_container
+            - @relation_cat_news.each do |relation_cat_news|
+              .fix.single_related_post.floatleft
+                /img src="images/related_feature_img.png"
+                = image_tag relation_cat_news.images.url
+                = link_to frontend_show_news_path(relation_cat_news) do
+                  h2 #{relation_cat_news.title}
+                p #{relation_cat_news.created_at.strftime("%d-%m-%Y")}   | #{relation_cat_news.comments.where(status: true).count } Comments
+
+  .panel.panel-primary
+    .panel-body
+      - if @frontend_news_details
+        - if alert
+          .alert.alert-info
+            = alert
+        .related_post.fix
+          h2 Comment..
+          .fix.related_post_container
+            .single_related_post.floatleft
+              - @news_comments.each do |news_comments|
+                h2
+                  = news_comments.user.email
+                h5
+                  = news_comments.title
+                p
+                  = news_comments.content
+      - if user_signed_in?
+        .contact_form
+          = form_with(model: @comment, local: true, html: {multipart: true}) do |form|
+            div.box-body
+              div.row
+                div.col-lg-6.col-xs-12
+                  div.form-group
+                    = form.label :title , class: "text"
+                    = form.text_field :title, class: "text" , placeholder: "Name"
+                  div.form-group
+                    = form.label :content
+                    | :&nbsp;
+                    = form.text_area :content, class: "textarea" ,placeholder: "content"
+                  div.action
+                    = form.submit "Submit", class: "submit"
+      - else
+        | vui lòng #{ link_to "Sign in " , new_user_session_url } hoặc #{ link_to "Register" , new_user_registration_url  }
+
+.fb-share-button data-href="#{frontend_show_news_path(@frontend_news_details)}" data-layout="button_count" data-size="small" data-mobile-iframe="true"
+  a class="fb-xfbml-parse-ignore" target="_blank" href=frontend_show_news_path(@frontend_news_details)
+    | Chia sẻ
+
+#fb-root
+javascript:
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=140354636712025";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+

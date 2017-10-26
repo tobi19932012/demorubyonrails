@@ -1,0 +1,44 @@
+.fix.sidebar.floatright
+  .fix.single_sidebar
+    h2 Search
+    = search_form_for @search, url: frontend_search_news_path do |f|
+      .row.form-group
+        .col-lg-12
+          = f.text_field :title_cont, placeholder: "search name", class: "search"
+      .row.form-group
+        .col-lg-6
+          = f.submit "search"
+        .col-lg-6
+          = button_tag "Reset", type: :reset
+
+  /.fix.single_sidebar
+  /  .popular_post.fix
+  /    h2 Popular
+  /    .fix.single_popular
+  /      = image_tag "popular.png", class: "floatleft"
+  /      h2 Vestibum Malesuada Etiam Magna
+  /      p 12 Nov, 2012
+  /    .fix.single_popular
+  /      = image_tag "popular.png", class: "floatleft"
+  /      h2 Vestibum Malesuada Etiam Magna
+  /      p 12 Nov, 2012
+  /    .fix.single_popular
+  /      = image_tag "popular.png", class: "floatleft"
+  /      h2 Vestibum Malesuada Etiam Magna
+  /      p 12 Nov, 2012
+  /
+  /.fix.single_sidebar
+  /  h2 A little about me
+  /  p
+  /    | Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+  /      Aenean lacinia bibendum nulla sed consectetur.
+  /        Vivamus sagittis lacus vel augue laoreet rutrum.
+  /          Sed posuere consectetur est at mant lobortis.
+  /            Sed posuere consectetur est lobortis. Fusce  mauris condimentum.
+  /.fix.single_sidebar
+  /  h2 Categories
+  /  a href="" photography(5)
+  /  a href="" food(9)
+  /  a href="" Salads(4)
+  /  a href="" spicy(3)
+  /  a href="" Wine(5)

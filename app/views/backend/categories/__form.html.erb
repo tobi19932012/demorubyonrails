@@ -1,0 +1,32 @@
+<%= form_with(model: backend_category, local: true) do |form| %>
+    <% if backend_category.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(backend_category.errors.count, "error") %> prohibited this backend_category from being
+            saved:</h2>
+
+          <ul>
+            <% backend_category.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="box-body">
+      <div class="row">
+        <div class="col-lg-6 col-xs-12">
+          <div class="form-group">
+            <%= form.label :name %><br/>
+            <%= form.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :status %><br/>
+            <%= form.check_box :status %>
+          </div>
+          <div class="actions">
+            <%= form.submit "Create" , class: "btn btn-default"  %>
+            <%= link_to "back", backend_categories_path , class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

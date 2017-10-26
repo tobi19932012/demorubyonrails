@@ -1,0 +1,64 @@
+
+
+h1 Listing backend_users
+
+ol.breadcrumb
+  li
+    a
+      i.fa.fa-dashboard
+        |  Dashboard
+  li.active
+    a
+      | Users
+
+div.box
+  div.box-header
+    = search_form_for @search, url: backend_users_path , method: :get  do |f|
+      div.row
+        div.col-lg-6
+        div.col-lg-3
+          = f.text_field :user_name_cont, placeholder: "search username "
+        div.col-lg-3
+          = f.submit "search"
+          | &nbsp
+          = button_tag "Reset", type: :reset
+  div.box-body
+    div.row
+      div.col-lg-12
+        div.table-responsive
+          table.table.table-bordered.food-item-table
+            thead
+              tr
+                th STT
+                th Photo
+                th Fullname
+                th Username
+                th Emails
+                th Joined date
+                th action
+              tbody
+                - @i = 0
+                - @backend_users.each do |backend_user|
+                  - if !backend_user.role?
+                    tr
+                      td = @i = @i + 1
+                      td = image_tag backend_user.avatar.url , class: "edit-ava"
+                      td = backend_user.full_name
+                      td = backend_user.user_name
+                      td = backend_user.email
+                      td = backend_user.created_at.strftime("%d-%m-%Y")
+                      td
+                        = link_to 'Show', backend_user_path(backend_user) , class: "btn btn-primary"
+                        '
+                        = link_to 'Edit', edit_backend_user_path(backend_user) , class: "btn btn-success"
+                        '
+                        = link_to 'Destroy', backend_user_path(backend_user), data: { confirm: 'Are you sure?' }, method: :delete , class: "btn btn-danger"
+      div class="pull-right"
+        = paginate @backend_users, window: 2 , theme: 'my_backend_theme'
+= link_to 'New User', new_backend_user_path, class: "btn btn-success"
+
+
+
+
+
+

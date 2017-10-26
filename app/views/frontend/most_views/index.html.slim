@@ -1,0 +1,25 @@
+.fix.main_content.floatleft
+  .panel.panel-primary
+    .panel-heading
+      h3.panel-title Most viewed news
+    - if @most_views
+      .panel-body
+        .fix.single_content_wrapper
+          - @most_views.each do |most_views|
+            /- cache frontend_news do
+            - if most_views.number_view > 0
+              .fix.single_content.floatleft
+                .images-size
+                  = image_tag most_views.images.url(:medium)
+                .fix.single_content_info
+                  h1
+                    = link_to most_views.title , frontend_show_news_path(most_views)
+                  p.author By Admin in News
+                  p
+                    = most_views.news_details.truncate(27, separator: ' ')
+                  .fix.post-meta
+                    p
+                      = most_views.created_at.strftime("%d-%m-%Y")
+                      '
+                      | | #{most_views.comments.where(status: true).count } Comments
+        = paginate @most_views, theme: 'my_frontend_theme'

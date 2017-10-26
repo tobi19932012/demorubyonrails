@@ -1,0 +1,145 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require font-awesome
+ *= require bootstrap-wysihtml5
+ *= require select2
+ *= require bootstrap
+ *= require backend/font-awesome
+ *= require ionicons
+ *= require bootstrap-datepicker
+ *= require backend/admin-lte.min
+ *= require backend/admin-lte-all-skins.min
+ *= require backend/helper
+
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.hidden-xs{
+  display: inline-block !important;
+}
+textarea {
+    max-width: 100%;
+}
+.main-header .logo:hover {
+    text-decoration: none;
+}
+.content-wrapper > .content > .box {
+    padding: 10px 15px;
+}
+.select2-container {
+    width: 100% !important;
+}
+.profile-img{
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+input[type="file"] {
+    border: 1px solid #eee;
+    padding: 0px;
+}
+
+.profile-info > .row {
+    margin-bottom: 10px;
+}
+
+legend > a:hover, legend > a:focus, legend > a:active {
+    text-decoration: none;
+    outline: none;
+}
+
+.food-items-table img{
+    max-width: 100px;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 1px;
+}
+
+.input-daterange input.form-control {
+    height: 33px;
+}
+
+.chart-container {
+    margin-top: 20px;
+    min-height: 230px;
+}
+.hiddenRow {
+    padding: 0 !important;
+}
+.w100{
+    max-width: 100px;
+}
+.wrapword{
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    /*white-space: -webkit-pre-wrap; !*Chrome & Safari *!*/
+    /*white-space: -pre-wrap;      !* Opera 4-6 *!*/
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    word-break: break-all;
+    white-space: normal;
+}
+.post-listview {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100vw;
+}
+.post-listview .post-item{
+    border: 1px solid #eeeeee;
+    box-shadow: 0 0 7px #eeeeee;
+    border-radius: 6px;
+    padding: 10px;
+}
+.post-listview .post-item h5{
+    margin: 5px;
+    font-weight: bold;
+}
+.post-listview .post-item span{
+    margin: 5px;
+    font-size: 12px;
+    color: #aaaaaa;
+}
+.post-listview .user-avatar, .post-listview .user-name{
+    display: inline-block;
+}
+.post-listview .user-avatar img{
+    vertical-align: text-bottom;
+}
+.post-listview .post-content, .post-listview .post-item .post-content p{
+    margin-top: 10px;
+}
+.post-listview .post-content img{
+    width: 100%;
+}
+.post-listview .post-footer span{
+    color: #aaaaaa;
+}
+.post-listview .post-footer i{
+    font-size: 18px;
+}
+
+
+.edit-ava{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}

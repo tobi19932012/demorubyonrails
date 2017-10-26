@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>News</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'frontend/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'frontend/application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :head %>
+  </head>
+
+  <body>
+
+  <%= render 'partials/frontend_header_area'%>
+  <!--Clean template by WpFreeware.com-->
+
+  <div class="fix content_area">
+    <%= render 'partials/frontend_nav_area'%>
+    <div class="fix wrap content_wrapper">
+      <div class="fix content">
+        <%= yield %>
+
+        <%= render 'partials/frontend_content_right_area'%>
+      </div>
+
+
+    </div>
+    <div class="fix bottom_add_bar">
+      <div class="addbar_leaderborard">
+
+        <%= image_tag "banner-1.gif" %>
+      </div>
+    </div>
+  </div>
+
+  <!--Clean template by WpFreeware.com-->
+
+  <%= render 'partials/frontend_footer_area'%>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1506773236070260';
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  </body>
+</html>

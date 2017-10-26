@@ -1,0 +1,32 @@
+p#notice = notice
+div.box
+  div.box-body
+    table.table.table-hover.table-bordered
+      tbody
+        tr
+          td id
+          td = @backend_news.id
+        tr
+          td title
+          td = @backend_news.title
+        tr
+          td images
+          td = image_tag @backend_news.images.url(:thumb)
+        tr
+          td news details
+          td = @backend_news.news_details
+        tr
+          td status
+          td = label_tag @backend_news.status ? "Online" : "Offline", nil , class: @backend_news.status ? "label label-success" : "label label-danger"
+        tr
+          td number_view
+          td = @backend_news.number_view
+        tr
+          td create date
+          td = @backend_news.created_at
+        tr
+          td update date
+          td = @backend_news.updated_at
+= link_to 'Edit', edit_backend_news_path(@backend_news) , class: "btn btn-success"
+|  |
+= link_to 'Back', backend_news_index_path, class: "btn btn-success"

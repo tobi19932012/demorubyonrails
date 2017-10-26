@@ -1,0 +1,29 @@
+
+.box
+  .row
+    .col-lg-12 = image_tag @backend_user.avatar.url(:thumb) , class: "edit-ava"
+  .box-body
+    .row
+      .col-lg-6
+        table.table
+          tbody
+            tr
+              td id
+              td = @backend_user.id
+            tr
+              td fullname
+              td = @backend_user.full_name
+
+            tr
+              td username
+              td = @backend_user.user_name
+            tr
+              td email
+              td = @backend_user.email
+            tr
+              td joined date
+              td = @backend_user.current_sign_in_at
+
+= link_to 'Edit', edit_backend_user_path(@backend_user), class: "btn btn-success"
+'  |
+= link_to 'Back', backend_users_path, class: "btn btn-success"

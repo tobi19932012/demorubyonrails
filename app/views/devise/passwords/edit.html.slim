@@ -1,0 +1,32 @@
+/h2 Change your password
+.fix.main_content.floatleft
+  .wrapper
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "form-signin"  }) do |f|
+    h3.text-center Forgot your password?
+    = devise_error_messages!
+    = f.hidden_field :reset_password_token
+
+    .field
+      - if @minimum_password_length
+        em
+          | ( #{@minimum_password_length} characters minimum)
+        br
+      .form-group
+        = f.label :password, "New password"
+        = f.password_field :password, autofocus: true, class: "form-control", placeholder: "New password" , autocomplete: "off"
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm new password" , autocomplete: "off"
+      .actions
+        = f.submit "Change my password" , class: "btn btn-lg btn-primary btn-block"
+    = render "devise/shared/links"
+      /= f.password_field :password, autofocus: true, autocomplete: "off"
+
+    /.field
+    /  = f.label :password_confirmation, "Confirm new password"
+    /  br
+    /  = f.password_field :password_confirmation, autocomplete: "off"
+
+
+
+

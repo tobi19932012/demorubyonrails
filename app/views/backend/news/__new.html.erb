@@ -1,0 +1,6 @@
+<h1>New Backend News</h1>
+
+<%= render 'form', backend_news: @backend_news %>
+
+<%= link_to 'Back', backend_news_index_path %>
+<<%= collection_select(:user, :id, @users, :id, :name, {:prompt => 'Please select the author of this post'}) %>

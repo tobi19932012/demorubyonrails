@@ -1,0 +1,10 @@
+.fix.top_add_bar
+  .addbar_leaderborard
+    = image_tag 'banner.png'
+.manu_area
+  .mainmenu.menu-wrap.wrap
+    ul#nav-bottom
+      - if @frontend_category_index
+        - @frontend_category_index.each do |frontend_categories|
+          li
+            = link_to frontend_categories.name , frontend_show_category_path(frontend_categories)

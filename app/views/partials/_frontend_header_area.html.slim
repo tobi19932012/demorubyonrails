@@ -1,0 +1,21 @@
+.fix.header_area
+  .fix.wrap.header
+    .logo.floatleft
+      h1 Fresh Blog
+    .manu.floatright
+      ul.nav-top
+        li
+          /a href="<%= r%>" Home
+          = link_to "Home" , frontend_root_path
+        / - byebug
+        - if user_signed_in?
+          li class="user-header"
+            /= current_user.user_name
+            = link_to "Sign out", destroy_user_session_path, method:  :delete
+        - elsif user_session
+            = link_to "Sign out", destroy_user_session_path, method:  :delete
+        - else
+          li class="user-header"
+            = link_to "Sign in", new_user_session_path
+          li class="user-header"
+            = link_to "registration", new_user_registration_path

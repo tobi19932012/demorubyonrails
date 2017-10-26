@@ -1,0 +1,24 @@
+.fix.main_content.floatleft
+  .panel.panel-primary
+    .panel-heading
+      h3.panel-title New post
+    - if @frontend_news
+      .panel-body
+        .fix.single_content_wrapper
+          - @frontend_news.each do |frontend_news|
+            .fix.single_content.floatleft
+              .images-size
+                = image_tag frontend_news.images.url(:medium)
+              .fix.single_content_info
+                h1
+                  = link_to frontend_news.title , frontend_show_news_path(frontend_news)
+                p.author By Admin in News
+                p
+                  =  frontend_news.news_details.truncate(27, separator: ' ')
+                .fix.post-meta
+                  p
+                    = frontend_news.created_at.strftime("%d-%m-%Y")
+                    '
+                    | | #{frontend_news.comments.where(status: true).count } Comments
+        /.news.pagination
+        = paginate @frontend_news,param_name: 'post_category_news_page', theme: 'my_frontend_theme'

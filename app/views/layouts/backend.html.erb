@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'backend/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'backend/application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body class="skin-black">
+<div class="wrapper">
+  <%= render 'partials/backend_nav' %>
+  <%= render 'partials/backend_sidebar' %>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <% if content_for? :content_header %>
+          <%= yield :content_header %>
+      <% else   %>
+          <h1>
+            Dashboard
+          </h1>
+          <ol class="breadcrumb">
+            <li>
+              <a href="<%= backend_root_path %>">
+                <i class="fa fa-dashboard"></i>
+              </a>
+              Dashboard
+            </li>
+            
+          </ol>
+      <% end %>
+    </section>
+    <section class="content">
+      <%= yield %>
+    </section>
+  </div>
+  <%= render 'partials/backend_footer' %>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<h1>Backend Categories</h1>
+<ol class='breadcrumb'>
+  <li>
+    <a>
+      <i class='fa fa-dashboard'>
+        Dashboard
+      </i>
+    </a>
+  
+  </li>
+  <li class='active'>
+    <a>Categories</a>
+  </li>
+</ol>
+
+<div class="box">
+  <div class="box-header">
+    <%= search_form_for @search do |f| %>
+    <div class="row">
+      <div class="col-lg-6"></div>
+      <div class="col-lg-3"><%= f.text_field :name_cont, placeholder: "search name" %></div>
+      <div class="col-lg-3"><%= f.submit "search" %> &nbsp; <%= button_tag "Reset", type: :reset %></div>
+    </div>
+    <% end %>
+  </div>
+  <div class='box-body'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <div class='table-responsive'>
+          <table class='table table-bordered food-items-table'>
+            <thead>
+            <tr>
+              <th>STT</th>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+              <% @i = 0 %>
+              <% @backend_categories.each do |backend_category| %>
+                <tr>
+                    <td><%= @i = @i + 1 %></td>
+                    <td><%= backend_category.name %> </td>
+                    <td>
+                      <%= label_tag backend_category.status ? "Online" : "Offline", nil , class: backend_category.status ? 'label status label-success' : 'status label  label-danger' %>
+                    <td>
+                      <%= link_to 'Show', backend_category , class: "btn btn-primary" %>
+                      <%= link_to 'Edit', edit_backend_category_path(backend_category), class: "btn btn-success" %>
+                      <%= link_to 'Destroy', backend_category, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
+
+                      <%= button_tag backend_category.status ? "Offline" : "Online", id:  backend_category.id ,class: backend_category.status ? 'update-category btn  btn-danger': 'btn update-category btn-success' %>
+                    </td>
+                  </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <div class="pull-right"><%= paginate @backend_categories, window: 2 %></div>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'New Backend Category', new_backend_category_path , class: "btn btn-success" %>
+
+

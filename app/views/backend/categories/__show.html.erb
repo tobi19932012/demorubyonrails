@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<div class="box">
+	<div class="box-body">
+		<table class="table table-hover table-bordered">
+			
+			<tbody>
+				<tr>
+					<td>id</td>
+					<td><%= @backend_categories.id %></td>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td><%= @backend_categories.name %></td>
+				</tr>
+				<tr>
+					<td>status</td>
+					<td>
+						<% if @backend_categories.status == true %>
+						 <label class="label label-success"> Online </label>
+						 <% else %>
+						 <label class="label label-danger"> ofline </label>
+						<% end %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+</div>
+<%= link_to 'Edit', edit_backend_category_path(@backend_category) , class: "btn btn-success" %> |
+<%= link_to 'Back', backend_categories_path , class: "btn btn-success" %>

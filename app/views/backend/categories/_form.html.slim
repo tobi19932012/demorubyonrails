@@ -1,0 +1,28 @@
+= form_with(model: backend_category, local: true, html: { multipart: true } ) do |form|
+  - backend_category.errors.any?
+    div#error_explanation
+      h2
+        = pluralize(backend_categories.errors.count, "error")
+          | prohibited this backend_categories from being saved:
+      ul
+        - backend_categories.errors.full_messages.each do |message|
+          li
+            = message
+  div.box-body
+    div.row
+      div.col-lg-6.col-xs-12
+        div.form-group
+          = form.label :name
+          = form.text_field :name,id: "name" ,  class: "form-control" , onkeyup: "ChangeToSlug();"
+          /= form.text_field :slug , id: "slug"
+          = form.hidden_field :slug , id: "slug"
+        div.form-group
+          = form.label :status
+          | :&nbsp;
+          = form.check_box :status
+        div.action
+          = form.submit "Create" , class: "btn btn-default"
+          '
+          | |
+          '
+          = link_to "back", backend_categories_path , class: "btn btn-default"
